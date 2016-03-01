@@ -16,6 +16,12 @@ noline = LineStyle(0, black)
 bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, green)
 bg = Sprite(bg_asset, (0,0))
 
+# Sounds
+pew1_asset = SoundAsset("sounds/pew1.mp3")
+pew1 = Sound(pew1_asset)
+pop_asset = SoundAsset("sounds/reappear.mp3")
+pop = Sound(pop_asset)
+
 
 # A ball! This is already in the ggame-tutorials repository
 ball_asset = ImageAsset("images/orb-150545_640.png")
@@ -47,11 +53,13 @@ def spaceKey(event):
 # Handle the "reverse" key
 def reverseKey(event):
     reverse(ball)
+    pop.play()
 
 # Handle the mouse click
 def mouseClick(event):
     ball.x = event.x
     ball.y = event.y
+    pew1.play()
 
 
 
