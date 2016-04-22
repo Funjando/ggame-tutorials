@@ -43,14 +43,30 @@ class SpaceGame(App):
         self.vr = 0.01
         
         
-        def step(self):
+    def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        
-        def step(self):
-            for ship in self.getSpritesbyClass(SpaceShip):
-                ship.step()
+
+    def thrustOn(self, event):
+        self.thrust = 1
+
+    def thrustOff(self, event):
+        self.thrust = 0
+ 
+
+    
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+           
+            if self.thrust == 1:
+                self.setImage(self.thrustframe)
+                self.thrustframe += 1
+                if self.thrustframe == 4:
+                    self.thrustframe = 1
+            else:
+                self.setImage(0)
                 
                 
         self.thrust = 0
